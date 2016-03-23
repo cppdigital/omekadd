@@ -12,7 +12,7 @@ Omeka 2.x API request, and then write to a CSV file. Intended for
 requests to items, collections, element sets, elements, files, & tags.
 '''
 
-endpoint = 'http://youromeka/api'
+endpoint = 'http://www.cppdigitallibrary.org/api'
 apikey = None
 resource = 'items'
 
@@ -74,7 +74,7 @@ for D in data:
 # write to CSV output file using DictWriter instance
 # by default, fill empty cells with 'None'; un-quote None for empty cell
 o = open(resource + '_output.csv', 'w')
-c = csv.DictWriter(o, [f.encode('utf-8', 'replace') for f in sorted(fields)], restval='None', extrasaction='ignore') 
+c = csv.DictWriter(o, [f.encode('utf-8', 'replace') for f in sorted(fields)], restval=None, extrasaction='ignore') 
 c.writeheader()
 for D in data:
     c.writerow({k:v.encode('utf-8', 'replace') for k,v in D.items() if isinstance(v, unicode)})
